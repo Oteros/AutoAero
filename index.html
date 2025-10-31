@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {font-family: Arial, sans-serif; line-height: 1.6; margin:0; background:#f5f5f5;}
-    header {background:#003366; color:#fff; padding:1.5rem 1rem 1rem 1rem; position:relative;}
+    header {background:#003366; color:#fff; padding:1.5rem 1rem 1rem 1rem; position:relative; display:flex; align-items:center; justify-content:space-between;}
     header h1 {margin:0; font-size:1.6rem;}
     header p {margin:0.25rem 0 0.5rem 0;}
-    .funding-strip {position:absolute; top:1rem; right:1rem; max-width:210px;}
+    .logo-uco img {max-height:70px; margin-right:1rem;}
+    .funding-strip {max-width:320px;}
     .funding-strip img {max-width:100%; height:auto;}
     nav {background:#00294d; padding:0.5rem 1rem;}
     nav a {color:#fff; margin-right:1rem; text-decoration:none; font-size:0.9rem;}
@@ -25,24 +26,29 @@
     .img-block img {max-width:100%; height:auto; border:1px solid #ddd; border-radius:4px;}
     .social-list a {display:block; margin-bottom:0.4rem; word-break:break-all;}
     .funding-box {background:#eef2f5; padding:0.8rem 1rem; border-radius:4px; margin-top:1rem; display:flex; align-items:center; gap:1rem;}
-    .funding-box img {max-height:55px;}
+    .funding-box img {max-height:80px;}
     @media (max-width:700px){
-      header {padding-bottom:5rem;}
-      .funding-strip {position:static; margin-top:1rem;}
+      header {flex-direction:column; align-items:flex-start;}
+      .funding-strip {margin-top:1rem;}
       .funding-box {flex-direction:column; align-items:flex-start;}
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>AutoAero – Automatización de procesos predictivos en Aerobiología</h1>
-    <p>Universidad de Córdoba · Red Española de Aerobiología (REA)</p>
-    <!-- logo fondos -->
+    <div class="logo-uco">
+      <!-- Suba logo_uco.png al repositorio -->
+      <img src="logo_uco.png" alt="Logo Universidad de Córdoba">
+    </div>
+    <div>
+      <h1>AutoAero – Automatización de procesos predictivos en Aerobiología</h1>
+      <p>Grupo de Aerobiología · Universidad de Córdoba</p>
+    </div>
     <div class="funding-strip">
-      <!-- Suba fondos.png al repo y esto se verá -->
       <img src="fondos.png" alt="Financiado por PRTR · Unión Europea NextGenerationEU">
     </div>
   </header>
+
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#sistema">Sistema de datos</a>
@@ -51,110 +57,95 @@
     <a href="#redes">Redes</a>
     <a href="#proyecto">Sobre el proyecto</a>
   </nav>
+
   <main>
     <section id="inicio">
       <h2>Inicio</h2>
-      <p><strong>AutoAero</strong> es un proyecto desarrollado en la Universidad de Córdoba con el fin de digitalizar y automatizar la gestión de los datos polínicos que aportan semanalmente los grupos de aerobiología españoles. El resultado es una base de datos única, limpia y actualizable que sirve de apoyo a los mapas de polen de la <strong>Red Española de Aerobiología (REA)</strong> y a nuevas aplicaciones web.</p>
-      <p>La información detallada del proyecto puede consultarse también en la web oficial de la REA:</p>
-      <p><a class="btn" href="https://www.uco.es/investiga/grupos/rea/?page_id=429" target="_blank">Ver información en la web de la REA</a></p>
+      <p><strong>AutoAero</strong> es un proyecto del <strong>Grupo de Aerobiología de la Universidad de Córdoba</strong>, orientado a digitalizar y automatizar la gestión de los datos polínicos que los distintos grupos de investigación nacionales envían periódicamente. El resultado es una base de datos unificada, limpia y actualizable que sirve de base para la elaboración de productos científicos y aplicaciones interactivas.</p>
+
+      <p>Por razones justificativas, los modelos derivados del sistema pueden consultarse en la página de la Red Española de Aerobiología:</p>
+      <p><a class="btn" href="https://www.uco.es/investiga/grupos/rea/?page_id=429" target="_blank">Ver página de modelos</a></p>
+
       <div class="cards">
         <div class="card">
           <h3 class="badge">1</h3>
-          <p>Sistema informático que recibe, filtra, homogeneiza y actualiza la base de datos REA.</p>
+          <p>Automatización de la inclusión y validación de datos en la base de datos central.</p>
         </div>
         <div class="card">
           <h3 class="badge">2</h3>
-          <p>Base de datos en MongoDB y copia de seguridad en CSV para análisis y respaldo.</p>
+          <p>Integración en MongoDB y copia de seguridad en CSV para análisis y respaldo.</p>
         </div>
         <div class="card">
           <h3 class="badge">3</h3>
-          <p>Mapas polínicos y diseminación mejorada en web UCO, app REA y redes sociales.</p>
+          <p>Mejora de la visualización y actualización de la información polínica.</p>
         </div>
         <div class="card">
           <h3 class="badge">4</h3>
-          <p>Aplicaciones Shiny públicas para consulta y cálculo polínico.</p>
+          <p>Creación de aplicaciones web para la consulta y el cálculo de índices polínicos.</p>
         </div>
       </div>
     </section>
 
     <section id="sistema">
       <h2>1. Sistema de datos</h2>
-      <p>Los grupos de aerobiología de España envían semanalmente sus datos en formatos distintos. AutoAero ha creado un <strong>pipeline de integración</strong> que limpia esos ficheros, corrige nombres y estructura la información para que pueda almacenarse de forma uniforme.</p>
-      <ul>
-        <li>Recepción automática de los envíos semanales.</li>
-        <li>Filtrado, control de calidad y homogeneización.</li>
-        <li>Almacenamiento principal en <strong>MongoDB</strong>.</li>
-        <li>Copia de seguridad en <strong>CSV</strong> para recuperación y trabajo externo.</li>
-        <li>Scripts de acceso y descarga para investigadores.</li>
-      </ul>
+      <p>El grupo ha desarrollado un <strong>sistema automatizado de integración</strong> que recibe los ficheros semanales procedentes de distintos laboratorios, detecta el formato, valida los nombres y estructura la información en una base de datos MongoDB. Este sistema también genera copias de seguridad en CSV y scripts de acceso para facilitar la reutilización de los datos.</p>
 
-      <!-- diagrama de principales avances -->
       <div class="img-block">
         <p><strong>Principales avances del sistema</strong></p>
         <img src="diagrama.png" alt="Diagrama de los principales avances del proyecto AutoAero">
       </div>
 
-      <!-- esquema del sistema de archivos -->
       <div class="img-block">
-        <p><strong>Estructura del sistema de archivos y procesos</strong></p>
+        <p><strong>Estructura general del sistema de archivos y procesos</strong></p>
         <img src="sistema.png" alt="Sistema de archivos AutoAero">
       </div>
-
-      <p>Este sistema es la base de los nuevos productos de la REA.</p>
     </section>
 
     <section id="informacion">
       <h2>2. Información polínica y productos</h2>
-      <p>Los <strong>mapas polínicos actuales</strong> y la información publicada en los canales de la UCO y de la REA se apoyan en la infraestructura generada en el proyecto. Gracias a la automatización es posible mantener la información actualizada y generar salidas más detalladas.</p>
-      <p>Se ha mejorado la diseminación a través de:</p>
-      <ul>
-        <li>Portal de la REA en la Universidad de Córdoba.</li>
-        <li>Aplicación móvil de la REA.</li>
-        <li>Redes sociales y comunicación con medios.</li>
-      </ul>
-      <p>Los mapas son ahora el resultado de un proceso de investigación que combina datos observados, datos completados y modelos.</p>
+      <p>La información generada se visualiza mediante herramientas interactivas que permiten explorar mapas y estadísticas polínicas en tiempo real. El sistema mejora la calidad de los datos y su accesibilidad, sirviendo como base para futuros modelos predictivos y productos de transferencia.</p>
     </section>
 
     <section id="apps">
       <h2>3. Aplicaciones y herramientas</h2>
-      <p>En el marco de AutoAero se han desarrollado interfaces para facilitar el acceso a la información polínica:</p>
+      <p>En el marco de AutoAero se han desarrollado aplicaciones web que utilizan la infraestructura de datos creada durante el proyecto:</p>
       <ul>
         <li><a class="btn" href="https://aerobiologyeaaci.shinyapps.io/Calendars/" target="_blank">Calendarios de polen (Shiny)</a></li>
         <li><a class="btn" href="https://aerobiologyeaaci.shinyapps.io/pollen_calculator/" target="_blank">Pollen Calculator (Shiny)</a></li>
       </ul>
-      <p>Estas aplicaciones utilizan la estructura de datos diseñada en el proyecto y permiten que investigadores y usuarios técnicos consulten y calculen sin programar.</p>
+      <p>Estas herramientas facilitan la consulta de información polínica sin necesidad de conocimientos de programación y están abiertas a la comunidad científica y médica.</p>
     </section>
 
     <section id="redes">
       <h2>4. Redes y diseminación</h2>
-      <p>Como parte del proyecto AutoAero se activaron y dinamizaron los canales de comunicación del grupo para difundir la información polínica generada por el nuevo sistema:</p>
+      <p>Como resultado del proyecto se activaron nuevos canales de comunicación del grupo para difundir los avances científicos y tecnológicos desarrollados:</p>
       <div class="social-list">
-        <a href="https://www.instagram.com/p/DPwKCyNDNQh/?img_index=1" target="_blank">Instagram – Aerobiología UCO / REA</a>
-        <a href="https://www.facebook.com/rea.aerobiologia/posts/pfbid02HP1s5xNAbobJmZoXGB5obQgZ4TEoCiphXFd79fyq6PfTHjVbuRxpAVeFWMRtPyXcl" target="_blank">Facebook – REA Aerobiología</a>
-        <a href="https://www.linkedin.com/posts/grupo-de-aerobiolog%C3%ADa-universidad-de-c%C3%B3rdoba_horizonteeuropea-sylva-automaticos-activity-7382356717143097344-sfvY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEgLbh4BVcbePsIfpS9iXCkcdu-MGUDZhOg" target="_blank">LinkedIn – Grupo de Aerobiología (UCO)</a>
+        <a href="https://www.instagram.com/p/DPwKCyNDNQh/?img_index=1" target="_blank">Instagram – Grupo de Aerobiología (UCO)</a>
+        <a href="https://www.facebook.com/rea.aerobiologia/posts/pfbid02HP1s5xNAbobJmZoXGB5obQgZ4TEoCiphXFd79fyq6PfTHjVbuRxpAVeFWMRtPyXcl" target="_blank">Facebook – Grupo de Aerobiología UCO</a>
+        <a href="https://www.linkedin.com/posts/grupo-de-aerobiolog%C3%ADa-universidad-de-c%C3%B3rdoba_horizonteeuropea-sylva-automaticos-activity-7382356717143097344-sfvY?utm_source=share&utm_medium=member_desktop" target="_blank">LinkedIn – Grupo de Aerobiología Universidad de Córdoba</a>
       </div>
-      <p>Estos canales se pusieron en marcha y empezaron a tener contenido regular a partir del desarrollo del sistema AutoAero.</p>
     </section>
 
     <section id="proyecto">
       <h2>5. Sobre el proyecto</h2>
-      <p><strong>Título:</strong> Automatización de procesos predictivos en Aerobiología (Auto-Aero).</p>
-      <p><strong>Investigadores principales (IP):</strong> José Antonio Oteros Moreno y Carmen Galán Soldevilla (Universidad de Córdoba).</p>
-      <p><strong>Coordinación científica:</strong> Departamento de Botánica, Ecología y Fisiología Vegetal. Campus de Rabanales, UCO.</p>
-      <p><strong>Finalidad:</strong> reestructurar la base de datos de la REA, mejorar los modelos de pronóstico y modernizar el portal web para hacer más accesible la información polínica en España.</p>
-      <p><strong>Documentación de referencia:</strong> Memoria científico-técnica del proyecto. :contentReference[oaicite:0]{index=0}</p>
+      <p><strong>Título completo:</strong> Automatización de procesos predictivos en Aerobiología (Auto-Aero).</p>
+      <p><strong>Código del proyecto:</strong> TED2021-130084B-I00</p>
+      <p><strong>Investigadores principales (IP):</strong> José Antonio Oteros Moreno y Carmen Galán Soldevilla.</p>
+      <p><strong>Entidad ejecutora:</strong> Universidad de Córdoba.</p>
+      <p><strong>Financiación:</strong> Proyecto financiado en el marco del Plan de Recuperación, Transformación y Resiliencia (PRTR) con fondos de la Unión Europea – NextGenerationEU.</p>
 
       <div class="funding-box">
         <img src="fondos.png" alt="Financiación PRTR y Unión Europea">
         <div>
-          <p><strong>Financiación:</strong> Proyecto financiado en el marco del Plan de Recuperación, Transformación y Resiliencia (PRTR), con fondos de la Unión Europea – NextGenerationEU.</p>
-          <p>Entidad ejecutora: Universidad de Córdoba.</p>
+          <p>Desarrollado por el Grupo de Aerobiología de la Universidad de Córdoba.</p>
+          <p>La infraestructura creada servirá de base para futuros sistemas automáticos de vigilancia aerobiológica.</p>
         </div>
       </div>
     </section>
   </main>
+
   <footer>
-    © Universidad de Córdoba – Proyecto AutoAero. Si reutiliza estos contenidos cite la fuente. · <a href="https://www.uco.es/investiga/grupos/rea/?page_id=429" target="_blank">REA – información del proyecto</a>
+    © Universidad de Córdoba – Proyecto AutoAero (TED2021-130084B-I00) · Si reutiliza estos contenidos cite la fuente.
   </footer>
 </body>
 </html>
